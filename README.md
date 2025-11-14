@@ -158,6 +158,8 @@ Verify your deployment status anytime:
 
 For full deployment documentation, see [README-DEPLOY.md](./README-DEPLOY.md).
 
+**Note:** If you need to migrate this repository to a different GitHub account, see [REPOSITORY-MIGRATION.md](./REPOSITORY-MIGRATION.md) for detailed instructions.
+
 ---
 
 ## 🧩 Cross-Posting Supported Platforms
