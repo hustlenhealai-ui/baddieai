@@ -1,221 +1,85 @@
-# 💎 Photo2Profit — AI-Powered Resale Automation Platform
+# GitHub Copilot CLI
 
-[![CI](https://github.com/baddiehustleai-star/jubilant-happiness/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/baddiehustleai-star/jubilant-happiness/actions/workflows/ci.yml)
-[![Backend Deploy](https://github.com/baddiehustleai-star/jubilant-happiness/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/baddiehustleai-star/jubilant-happiness/actions/workflows/deploy.yml)
-[![Frontend Deploy](https://github.com/baddiehustleai-star/jubilant-happiness/actions/workflows/frontend-deploy.yml/badge.svg?branch=main)](https://github.com/baddiehustleai-star/jubilant-happiness/actions/workflows/frontend-deploy.yml)
-[![Deployment Status](https://github.com/baddiehustleai-star/jubilant-happiness/actions/workflows/deployment-status.yml/badge.svg)](https://github.com/baddiehustleai-star/jubilant-happiness/actions/workflows/deployment-status.yml)
+[![Stars](https://img.shields.io/github/stars/hustlenhealai-ui/baddieai?style=social)](https://github.com/hustlenhealai-ui/baddieai/stargazers)
+[![Watchers](https://img.shields.io/github/watchers/hustlenhealai-ui/baddieai?style=social)](https://github.com/hustlenhealai-ui/baddieai/watchers)
+[![Forks](https://img.shields.io/github/forks/hustlenhealai-ui/baddieai?style=social)](https://github.com/hustlenhealai-ui/baddieai/network/members)
 
-> Note for automated contributors: see `/.github/COPILOT_CODING_AGENT.md` for repository-specific onboarding and guidance for Copilot coding agents.
+GitHub Copilot CLI brings the power of Copilot coding agent directly to your terminal.
 
-A modern, luxe-themed React starter built with **Vite + TailwindCSS** featuring rose-gold branding and elegant typography.
+## Installation
 
-## ✨ Features
-
-- 🎨 **Rose-Gold Theme** - Custom color palette with blush, rose, and gold tones
-- 💎 **Luxe Design** - Cinzel Decorative + Montserrat typography
-- ⚡ **Vite** - Lightning-fast dev server and optimized builds
-- ⚛️ **React 18** - Modern React with hooks
-- 🎯 **TailwindCSS** - Utility-first styling with custom configuration
-- 📱 **Responsive** - Mobile-first design approach
-
-## 🚀 Quick Start
+Install globally with npm:
 
 ```bash
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview the production build
-npm run preview
-
-# Verify deployment readiness (recommended before deploying)
-npm run verify:deploy
+npm install -g @github/copilot
 ```
 
-### 🔍 Pre-Deployment Verification
-
-Before deploying to production, run the comprehensive deployment verification:
+## Launching the CLI
 
 ```bash
-npm run verify:deploy
+copilot
 ```
 
-This command performs all pre-deployment checks:
+On first launch, you'll be greeted with our adorable animated banner! If you'd like to see this banner again, launch copilot with the `--banner` flag.
 
-- ✅ Linting (ESLint)
-- ✅ Code formatting (Prettier)
-- ✅ Unit tests (Vitest)
-- ✅ Production build
+If you're not currently logged in to GitHub, you'll be prompted to use the `/login` slash command. Enter this command and follow the on-screen instructions to authenticate.
 
-The script provides colored output and a summary report. All checks must pass before deployment.
+## Authenticate with a Personal Access Token (PAT)
 
-## 🔐 Environment variables
+You can also authenticate using a fine-grained PAT with the "Copilot Requests" permission enabled.
 
-Copy `.env.example` to `.env` and fill in the values you plan to use (optional for local demo):
+1. Visit https://github.com/settings/personal-access-tokens/new
+2. Under "Permissions," click "add permissions" and select "Copilot Requests"
+3. Generate your token
+4. Add the token to your environment via the environment variable `GH_TOKEN` or `GITHUB_TOKEN` (in order of precedence)
 
-```env
-# Firebase
-FIREBASE_API_KEY=
-FIREBASE_AUTH_DOMAIN=
-FIREBASE_PROJECT_ID=
-FIREBASE_STORAGE_BUCKET=
-FIREBASE_MESSAGING_SENDER_ID=
-FIREBASE_APP_ID=
+## Using the CLI
 
-# Stripe (optional)
-STRIPE_SECRET_KEY=
-STRIPE_PRICE_ID=
+Launch `copilot` in a folder that contains code you want to work with.
 
-# APIs (optional)
-REMOVEBG_API_KEY=
-EBAY_APP_ID=
-EBAY_CERT_ID=
-EBAY_DEV_ID=
-EBAY_OAUTH_TOKEN=
+By default, `copilot` utilizes Claude Sonnet 4.5. Run the `/model` slash command to choose from other available models, including Claude Sonnet 4 and GPT-5.
 
-# SendGrid (for weekly emails in Cloud Functions)
-SENDGRID_API_KEY=
-```
+Each time you submit a prompt to GitHub Copilot CLI, your monthly quota of premium requests is reduced by one. For information about premium requests, see [About premium requests](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line/about-premium-requests).
 
-## 🔒 Required GitHub Secrets for Deployment
+For more information about how to use the GitHub Copilot CLI, see our [official documentation](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line).
 
-For automated deployments to work correctly, the following secrets **must** be configured in your GitHub repository settings (Settings → Secrets and variables → Actions):
+## 📢 Feedback and Participation
 
-| Secret Name                           | Required    | Purpose                                 | Where to Get It                                                                   |
-| ------------------------------------- | ----------- | --------------------------------------- | --------------------------------------------------------------------------------- |
-| `GOOGLE_APPLICATION_CREDENTIALS_JSON` | ✅ Yes      | Authenticates Cloud Run deployments     | Google Cloud Console → IAM & Admin → Service Accounts → Create key (JSON format)  |
-| `FIREBASE_SERVICE_ACCOUNT`            | ✅ Yes      | Deploys frontend to Firebase Hosting    | Firebase Console → Project Settings → Service Accounts → Generate new private key |
-| `SLACK_WEBHOOK_URL`                   | ⚠️ Optional | Sends deployment notifications to Slack | Slack App settings → Incoming Webhooks                                            |
-| `CRON_SECRET`                         | ⚠️ Optional | Secures the SEO refresh endpoint        | Generate a random string (e.g., `openssl rand -hex 32`)                           |
+We're excited to have you join us early in the Copilot CLI journey.
 
-### Validating Your Secrets
+This is an early-stage preview, and we're building quickly. Expect frequent updates--please keep your client up to date for the latest features and fixes!
 
-Before merging to main, verify all required secrets are set:
+Your insights are invaluable! Open issue in this repo, join [Discussions](https://github.com/hustlenhealai-ui/baddieai/discussions), and run `/feedback` from the CLI to submit a confidential feedback survey!
 
-1. Go to your repository on GitHub
-2. Navigate to **Settings** → **Secrets and variables** → **Actions**
-3. Confirm both `GOOGLE_APPLICATION_CREDENTIALS_JSON` and `FIREBASE_SERVICE_ACCOUNT` exist
-4. Optionally add `SLACK_WEBHOOK_URL` and `CRON_SECRET` for enhanced features
+## About
 
-### Testing Deployment
+GitHub Copilot CLI brings the power of Copilot coding agent directly to your terminal.
 
-After setting up secrets, you can test the deployment pipeline:
+### Resources
 
-1. Push a small change to the `main` branch (e.g., update a comment in `/api/health.js`)
-2. Check GitHub Actions logs for successful deployment
-3. Visit the deployed Cloud Run URL and hit `/api/health` to verify backend
-4. Check Firebase Hosting URL to verify frontend deployment
-5. If configured, check Slack for deployment notifications
+- [Readme](README.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
 
-### 3️⃣ Firebase Setup
+### Activity
 
-```bash
-firebase login
-firebase init functions
-```
+- **Stars:** 5.1k stars
+- **Watchers:** 52 watching
+- **Forks:** 444 forks
 
-Deploy the weekly scheduler:
+### Releases
 
-```bash
-# Set your SendGrid key
-firebase functions:config:set sendgrid.key="your_sendgrid_api_key"
+See [Releases](https://github.com/hustlenhealai-ui/baddieai/releases) for version history.
 
-# Deploy just this function
-firebase deploy --only functions:weeklyExport
-```
+**Latest:** 0.0.358 (released 3 hours ago)
 
-### 4️⃣ Local Development
+### Contributors
 
-```bash
-npm run dev
-```
+This project exists thanks to all the people who contribute.
 
-Visit: **[http://localhost:5173](http://localhost:5173)**
+## Footer
 
----
+© 2025 GitHub, Inc.
 
-## 🌐 Deployment
-
-Deploy your frontend with **Vercel** or **Firebase Hosting**:
-
-- Connect your GitHub repo
-- Add your `.env` variables
-- Deploy the main branch
-
-Your weekly scheduler runs automatically from Firebase Cloud Functions.
-
-### 🚀 Deployment Status Check
-
-Verify your deployment status anytime:
-
-- **Automated:** Trigger the [Deployment Status Check workflow](../../actions/workflows/deployment-status.yml) or comment `@github-actions deployment status` on any issue
-- **Manual:** See [DEPLOYMENT-STATUS.md](./DEPLOYMENT-STATUS.md) for detailed verification steps
-
-For full deployment documentation, see [README-DEPLOY.md](./README-DEPLOY.md).
-
-**Note:** If you need to migrate this repository to a different GitHub account, see [REPOSITORY-MIGRATION.md](./REPOSITORY-MIGRATION.md) for detailed instructions.
-
----
-
-## 🧩 Cross-Posting Supported Platforms
-
-| Platform                 | Method                |
-| ------------------------ | --------------------- |
-| **eBay**                 | Full API integration  |
-| **Poshmark**             | CSV export            |
-| **Mercari**              | CSV export            |
-| **Depop**                | CSV export            |
-| **Facebook Shop**        | CSV export            |
-| **Facebook Marketplace** | Copy-ready data       |
-| **Instagram Shop**       | via Facebook Shop CSV |
-| **Pinterest / TikTok**   | Optional social share |
-
----
-
-## 🧠 Roadmap
-
-| Phase          | Focus                                              |
-| -------------- | -------------------------------------------------- |
-| **MVP (Now)**  | AI listings, cross-posting, weekly exports         |
-| **Next**       | OAuth integrations for live posting                |
-| **Pro**        | AI trend analytics, auto pricing, referral rewards |
-| **Enterprise** | API for thrift stores & reseller networks          |
-
----
-
-## 💰 Monetization Plan
-
-- $1 trial → $9.99/month
-- Pro plan: $19.99/month (includes trend reports + advanced cross-posting)
-- Affiliate commissions for referrals
-- B2B tier for boutique resellers
-
----
-
-## 🩷 Credits
-
-Built with:
-
-- React + Tailwind
-- Firebase + Firestore
-- Stripe
-- SendGrid
-- OpenAI / Gemini APIs
-- Designed and manifested by **Baddie AI Hustle & Heal** ✨
-
----
-
-## 📞 Support
-
-For setup help or business collaboration:
-📧 **[support@photo2profit.app](mailto:support@photo2profit.app)**
-🌐 [photo2profit.app](https://photo2profit.app) _(coming soon)_
-
-## 🤝 Contributing
-
-Please see `/.github/COPILOT_CODING_AGENT.md` for repository-specific onboarding and CI expectations. Pull requests should pass lint, format:check, tests, and build.
+**Footer Navigation:** [Terms](https://github.com/terms) | [Privacy](https://github.com/privacy) | [Security](https://github.com/security)
