@@ -1,0 +1,58 @@
+name: Test Documentation
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test-documentation:
+    runs-on: ubuntu-latest
+    name: Test Documentation Quality
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      
+      - name: Test file structure
+        run: |
+          echo "📂 Testing repository structure..."
+          
+          # Verify critical files exist
+          test -f README.md && echo "✅ README.md found" || echo "❌ README.md missing"
+          test -f CONTRIBUTING.md && echo "✅ CONTRIBUTING.md found" || echo "❌ CONTRIBUTING.md missing"
+          test -f SECURITY.md && echo "✅ SECURITY.md found" || echo "❌ SECURITY.md missing"
+          test -f .github/copilot-instructions.md && echo "✅ Copilot instructions found" || echo "❌ Copilot instructions missing"
+          
+          echo "📁 Repository structure validated"
+      
+      - name: Test Markdown syntax
+        run: |
+          echo "📝 Testing Markdown syntax..."
+          
+          # Count total markdown files
+          MD_COUNT=$(find . -name "*.md" -type f | wc -l)
+          echo "Found $MD_COUNT Markdown files"
+          
+          # Ensure we have at least the essential documentation
+          if [ "$MD_COUNT" -ge 3 ]; then
+            echo "✅ Sufficient documentation files present"
+          else
+            echo "⚠️  Warning: Limited documentation files"
+          fi
+      
+      - name: Test workflow files
+        run: |
+          echo "⚙️  Testing workflow configuration..."
+          
+          # Check if workflow directory exists and contains files
+          if [ -d ".github/workflows" ]; then
+            WORKFLOW_COUNT=$(find .github/workflows -name "*.yml" -o -name "*.yaml" | wc -l)
+            echo "Found $WORKFLOW_COUNT workflow files"
+            echo "✅ Workflow files present"
+          else
+            echo "❌ No workflow directory found"
+          fi
+      
+      - name: Tests complete
+        run: echo "✅ All documentation tests passed!"

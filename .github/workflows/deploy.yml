@@ -1,0 +1,50 @@
+name: Deploy Documentation
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to GitHub Pages
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      
+      - name: Prepare documentation
+        run: |
+          echo "📚 Preparing documentation for deployment..."
+          
+          # List all markdown files
+          find . -name "*.md" -type f
+          
+          echo "✅ Documentation prepared"
+      
+      - name: Deployment preparation complete
+        run: |
+          echo "📦 Documentation is ready for deployment"
+          echo "🚀 To enable GitHub Pages:"
+          echo "   1. Go to repository Settings → Pages"
+          echo "   2. Select source: Deploy from a branch"
+          echo "   3. Select branch: main and folder: / (root)"
+          echo "   4. Save and wait for deployment"
+      
+      # Uncomment the following steps when GitHub Pages is configured
+      # - name: Setup Pages
+      #   uses: actions/configure-pages@v4
+      # 
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     path: '.'
+      # 
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v4
